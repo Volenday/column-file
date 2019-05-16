@@ -928,6 +928,13 @@
   resolved "https://registry.yarnpkg.com/@emotion/hash/-/hash-0.6.6.tgz#62266c5f0eac6941fece302abad69f2ee7e25e44"
   integrity sha512-ojhgxzUHZ7am3D2jHkMzPpsBAiB005GF5YU4ea+8DNPybMk01JJUM9V9YRlF/GE95tcOm8DxQvWA2jq19bGalQ==
 
+"@volenday/generate-thumbnail@~0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@volenday/generate-thumbnail/-/generate-thumbnail-0.0.4.tgz#2cff10724ba3091ce303b3026de8aadb80db2e08"
+  integrity sha512-GWVSPzS1mgdhSp4259JvSBKdbpPc6gk4/8wCY2FzwSU/jRjPHltDI0nC6GL89YvndmLZMFjtdcHT+pP6F1BzpQ==
+  dependencies:
+    mime-types "~2.1.24"
+
 "@webassemblyjs/ast@1.8.5":
   version "1.8.5"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.8.5.tgz#51b1c5fe6576a34953bf4b253df9f0d490d9e359"
@@ -2458,13 +2465,6 @@ gaze@^1.0.0:
   integrity sha512-BRdNm8hbWzFzWHERTrejLqwHDfS4GibPoq5wjTPIoJHoBtKGPg3xAFfxmM+9ztbXelxcf2hwQcaz1PtmFeue8g==
   dependencies:
     globule "^1.0.0"
-
-generate-thumbnail-from-path@~0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/generate-thumbnail-from-path/-/generate-thumbnail-from-path-0.0.3.tgz#21c01b2e365f1ebed9d3666e7d30c99902e81ce8"
-  integrity sha512-k32d4x/n5J9JENTG9amaC6bxN0etA0jzJOV2w9OUAqizW9FkBjlH+BOECO1Mdsy2csoUlq6TB9nuhyIro9Frog==
-  dependencies:
-    mime-types "~2.1.24"
 
 get-caller-file@^1.0.1:
   version "1.0.3"

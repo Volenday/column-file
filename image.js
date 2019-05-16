@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { CornerDialog, Pane, Popover } from 'evergreen-ui';
-import GenerateThumbnail from 'generate-thumbnail-from-path';
+import GenerateThumbnail from '@volenday/generate-thumbnail';
 import ImageLoader from 'react-imageloader';
 
 export default class Image extends Component {

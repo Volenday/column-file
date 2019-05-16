@@ -1,6 +1,6 @@
 {
-	"name": "column-file",
-	"version": "0.0.1",
+	"name": "@volenday/column-file",
+	"version": "0.0.2",
 	"private": false,
 	"license": "MIT",
 	"author": "Jerome Miranda <jerome.m.miranda@gmail.com>",
@@ -10,8 +10,8 @@
 	},
 	"main": "dist/index.min.js",
 	"dependencies": {
+		"@volenday/generate-thumbnail": "~0.0.4",
 		"evergreen-ui": "~4.15.0",
-		"generate-thumbnail-from-path": "~0.0.3",
 		"react": "~16.8.6",
 		"react-dom": "~16.8.6",
 		"react-imageloader": "~3.0.0"
