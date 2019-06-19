@@ -64,7 +64,7 @@ export default class Image extends Component {
 	}
 
 	Loader(props) {
-		let value = GenerateThumbnail(props.src);
+		let value = GenerateThumbnail(props.src.url);
 		return (
 			<ImageLoader
 				src={value.url}
@@ -81,14 +81,13 @@ export default class Image extends Component {
 
 		if (!selected || !visible) return null;
 
-		const { originalUrl } = GenerateThumbnail(selected);
 		return (
 			<CornerDialog
 				title="File View"
 				isShown={visible}
 				hasFooter={false}
 				onCloseComplete={() => this.setState({ selected: null, visible: false })}>
-				<a href={originalUrl} class="btn btn-flat btn-block btn-primary" target="_blank">
+				<a href={selected.url} class="btn btn-flat btn-block btn-primary" target="_blank">
 					<i class="fa fa-external-link-square" aria-hidden="true" /> Open
 				</a>
 				{this.Loader({ src: selected, height: 'auto', width: '100%' })}
