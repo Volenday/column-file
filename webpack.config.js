@@ -1,5 +1,4 @@
 const webpack = require('webpack');
-const path = require('path');
 
 module.exports = {
 	mode: 'production',
@@ -52,6 +51,13 @@ module.exports = {
 		filename: '[name].min.js',
 		chunkFilename: '[name].[chunkhash].chunk.min.js',
 		libraryTarget: 'commonjs2'
+	},
+	externals: {
+		react: 'commonjs2 react',
+		'@volenday/generate-thumbnail': 'commonjs2 @volenday/generate-thumbnail',
+		'evergreen-ui': 'commonjs2 evergreen-ui',
+		'react-dom': 'commonjs2 react-dom',
+		'react-imageloader': 'commonjs2 react-imageloader'
 	},
 	plugins: [
 		new webpack.optimize.AggressiveMergingPlugin(),
