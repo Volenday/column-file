@@ -10,7 +10,7 @@ export default class Image extends Component {
 	};
 
 	renderMultiple() {
-		const { value, viewMore } = this.props;
+		const { value } = this.props;
 
 		let fileArr = [];
 		for (let i = 0; i < value.length; i++) {
@@ -78,7 +78,6 @@ export default class Image extends Component {
 
 	Preview = () => {
 		const { selected, visible } = this.state;
-		const { column } = this.props;
 
 		if (!selected || !visible) return null;
 
@@ -98,7 +97,7 @@ export default class Image extends Component {
 	};
 
 	render() {
-		const { column, multiple, value } = this.props;
+		const { multiple, value } = this.props;
 
 		if (multiple) {
 			return (
