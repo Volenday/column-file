@@ -1,0 +1,14 @@
+.ant-popover {
+    max-width: 532px;
+}
+
+.multipleContainer {
+    width: 300px;
+    clear: both;
+}
+
+.multipleContainer a {
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
