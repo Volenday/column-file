@@ -55,9 +55,10 @@ module.exports = {
 	externals: {
 		react: 'commonjs2 react',
 		'@volenday/generate-thumbnail': 'commonjs2 @volenday/generate-thumbnail',
-		'evergreen-ui': 'commonjs2 evergreen-ui',
+		antd: 'commonjs2 antd',
 		'react-dom': 'commonjs2 react-dom',
-		'react-imageloader': 'commonjs2 react-imageloader'
+		'react-imageloader': 'commonjs2 react-imageloader',
+		'pretty-bytes': 'commonjs2 pretty-bytes'
 	},
 	plugins: [
 		new webpack.optimize.AggressiveMergingPlugin(),

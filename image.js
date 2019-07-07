@@ -1,7 +1,13 @@
 import React, { Component, Fragment } from 'react';
-import { CornerDialog, Pane, Popover } from 'evergreen-ui';
 import GenerateThumbnail from '@volenday/generate-thumbnail';
 import ImageLoader from 'react-imageloader';
+import prettyBytes from 'pretty-bytes';
+
+// antd
+import Popover from 'antd/es/popover';
+import 'antd/es/popover/style/css';
+
+import './styles.css';
 
 export default class Image extends Component {
 	state = {
@@ -10,68 +16,65 @@ export default class Image extends Component {
 	};
 
 	renderMultiple() {
-		const { value } = this.props;
+		const { value = [] } = this.props;
+		const newValue = value.slice(0, 2);
 
-		let fileArr = [];
-		for (let i = 0; i < value.length; i++) {
-			if (i > 1) {
-				i = value.length;
-				fileArr.push(
+		return (
+			<Fragment>
+				{newValue.map((d, i) => {
+					return (
+						<a
+							href="#"
+							key={`preview-${d.fileName}-${i}`}
+							onClick={e => {
+								this.setState({ selected: d, visible: true });
+								e.preventDefault();
+							}}
+							style={{ marginRight: 3 }}>
+							{this.Loader({ src: d, height: '30px', width: 'auto' })}
+						</a>
+					);
+				})}
+
+				{value.length >= 3 && (
 					<Popover
-						key={i}
 						content={
-							<Pane width={240} display="flex" padding={16} backgroundColor="#9999">
-								{value.map(d => {
+							<div class="multipleContainer clearfix">
+								{value.map((d, i) => {
 									return (
 										<a
-											key={d}
+											key={`all-${d.fileName}${i}`}
 											href="#"
 											onClick={e => {
 												this.setState({ selected: d, visible: true });
 												e.preventDefault();
-											}}
-											style={{ marginRight: 3 }}>
+											}}>
 											{this.Loader({ src: d, height: '30px', width: 'auto' })}
 										</a>
 									);
 								})}
-							</Pane>
-						}>
-						{({ getRef, toggle }) => {
-							return (
-								<a onClick={e => toggle()} title="View More Images" ref={getRef}>
-									<i class="fa fa-external-link" aria-hidden="true" />
-								</a>
-							);
-						}}
+							</div>
+						}
+						trigger="click"
+						title="More Images">
+						<a title="View More Images">
+							<i class="fas fa-external-link-alt" />
+						</a>
 					</Popover>
-				);
-			} else {
-				fileArr.push(
-					<a
-						href="#"
-						onClick={e => {
-							this.setState({ selected: value[i], visible: true });
-							e.preventDefault();
-						}}
-						style={{ marginRight: 3 }}>
-						{this.Loader({ src: value[i], height: '30px', width: 'auto' })}
-					</a>
-				);
-			}
-		}
-		return fileArr;
+				)}
+			</Fragment>
+		);
 	}
 
 	Loader(props) {
-		let value = GenerateThumbnail(props.src);
+		let value = GenerateThumbnail(props.src.url);
 		return (
 			<ImageLoader
 				src={value.url}
 				wrapper={React.createFactory('div')}
-				imgProps={{ width: props.width, height: props.height }}
+				imgProps={{ width: props.width, height: props.height, maxwidth: '100%' }}
 				preloader={() => <i class="fa fa-spinner fa-pulse fa-fw" />}>
-				<img src="/images/default.jpg" style={{ width: '30px', height: '30px' }} />
+				<img src="/images/default.jpg" style={{ width: '30px', height: '30px', maxWidth: '100%' }} />
 			</ImageLoader>
 		);
 	}
@@ -81,23 +84,49 @@ export default class Image extends Component {
 
 		if (!selected || !visible) return null;
 
-		const { originalUrl } = GenerateThumbnail(selected);
 		return (
-			<CornerDialog
-				title="File View"
-				isShown={visible}
-				hasFooter={false}
-				onCloseComplete={() => this.setState({ selected: null, visible: false })}>
-				<a href={originalUrl} class="btn btn-flat btn-block btn-primary" target="_blank">
-					<i class="fa fa-external-link-square" aria-hidden="true" /> Open
-				</a>
-				{this.Loader({ src: selected, height: 'auto', width: '100%' })}
-			</CornerDialog>
+			<Popover
+				content={
+					<Fragment>
+						{this.Loader({ src: selected, height: 'auto', width: '500px' })}
+						<table class="table table-striped">
+							<tbody>
+								<tr>
+									<td>
+										<b>File Name</b>
+									</td>
+									<td>{selected.fileName}</td>
+								</tr>
+								<tr>
+									<td>
+										<b>Size</b>
+									</td>
+									<td>{selected.size != '' ? prettyBytes(selected.size) : 0}</td>
+								</tr>
+								<tr>
+									<td>
+										<b>Mime Type</b>
+									</td>
+									<td>{selected.mimeType}</td>
+								</tr>
+							</tbody>
+						</table>
+					</Fragment>
+				}
+				trigger="click"
+				title={
+					<a href={selected.url} class="btn btn-flat btn-block btn-primary" target="_blank">
+						<i class="fa fa-external-link-square" aria-hidden="true" /> Open
+					</a>
+				}
+				visible={visible}
+				onVisibleChange={() => this.setState({ selected: null, visible: false })}
+			/>
 		);
 	};
 
 	render() {
-		const { multiple, value } = this.props;
+		const { multiple, value = {} } = this.props;
 
 		if (multiple) {
 			return (
