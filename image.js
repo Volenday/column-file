@@ -74,7 +74,10 @@ export default class Image extends Component {
 				wrapper={React.createFactory('div')}
 				imgProps={{ width: props.width, height: props.height, maxwidth: '100%' }}
 				preloader={() => <i class="fa fa-spinner fa-pulse fa-fw" />}>
-				<img src="/images/default.jpg" style={{ width: '30px', height: '30px', maxWidth: '100%' }} />
+				<img
+					src="https://s3-ap-southeast-1.amazonaws.com/images.aha.volenday.com/production/defaults/image.jpg"
+					style={{ width: '30px', height: '30px', maxWidth: '100%' }}
+				/>
 			</ImageLoader>
 		);
 	}
