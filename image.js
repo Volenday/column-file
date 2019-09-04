@@ -2,11 +2,9 @@ import React, { Component, Fragment } from 'react';
 import GenerateThumbnail from '@volenday/generate-thumbnail';
 import ImageLoader from 'react-imageloader';
 import prettyBytes from 'pretty-bytes';
+import { Popover } from 'antd';
 
-// antd
-import Popover from 'antd/es/popover';
 import 'antd/es/popover/style/css';
-
 import './styles.css';
 
 export default class Image extends Component {
@@ -90,37 +88,22 @@ export default class Image extends Component {
 		return (
 			<Popover
 				content={
-					<Fragment>
-						{this.Loader({ src: selected, height: 'auto', width: '500px' })}
-						<table class="table table-striped">
-							<tbody>
-								<tr>
-									<td>
-										<b>File Name</b>
-									</td>
-									<td>{selected.fileName}</td>
-								</tr>
-								<tr>
-									<td>
-										<b>Size</b>
-									</td>
-									<td>{selected.size != '' ? prettyBytes(selected.size) : 0}</td>
-								</tr>
-								<tr>
-									<td>
-										<b>Mime Type</b>
-									</td>
-									<td>{selected.mimeType}</td>
-								</tr>
-							</tbody>
-						</table>
-					</Fragment>
+					<a href={selected.url} target="_blank">
+						{this.Loader({ src: selected, height: 'auto', width: '400px' })}
+					</a>
 				}
 				trigger="click"
 				title={
-					<a href={selected.url} class="btn btn-flat btn-block btn-primary" target="_blank">
-						<i class="fa fa-external-link-square" aria-hidden="true" /> Open
-					</a>
+					<table style={{ width: '100%' }}>
+						<tbody>
+							<tr>
+								<td>
+									<b>Size</b>
+								</td>
+								<td>{selected.size != '' ? prettyBytes(selected.size) : 0}</td>
+							</tr>
+						</tbody>
+					</table>
 				}
 				visible={visible}
 				onVisibleChange={() => this.setState({ selected: null, visible: false })}

@@ -1,6 +1,6 @@
 {
 	"name": "@volenday/column-file",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"private": false,
 	"license": "MIT",
 	"author": "Jerome Miranda <jerome.m.miranda@gmail.com>",
@@ -21,15 +21,15 @@
 		"react-imageloader": "~3.0.0"
 	},
 	"dependencies": {
-		"@volenday/generate-thumbnail": "~0.0.6",
-		"antd": "~3.21.4",
+		"@volenday/generate-thumbnail": "~0.1.0",
+		"antd": "~3.23.1",
 		"mime": "~2.4.4",
 		"pretty-bytes": "~5.3.0",
 		"prop-types": "~15.7.2",
 		"react": "~16.9.0",
 		"react-dom": "~16.9.0",
 		"react-imageloader": "~3.0.0",
-		"webpack": "~4.39.2"
+		"webpack": "~4.39.3"
 	},
 	"devDependencies": {
 		"@babel/core": "~7.5.5",
@@ -59,8 +59,8 @@
 		"css-loader": "~3.2.0",
 		"file-loader": "~4.2.0",
 		"node-sass": "~4.12.0",
-		"sass-loader": "~7.2.0",
+		"sass-loader": "~8.0.0",
 		"style-loader": "~1.0.0",
-		"webpack-cli": "~3.3.6"
+		"webpack-cli": "~3.3.7"
 	}
 }
