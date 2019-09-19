@@ -60,7 +60,7 @@ module.exports = {
 		'prop-types': 'commonjs2 prop-types',
 		react: 'commonjs2 react',
 		'react-dom': 'commonjs2 react-dom',
-		'react-imageloader': 'commonjs2 react-imageloader'
+		'react-image': 'commonjs2 react-image'
 	},
 	plugins: [
 		new webpack.optimize.AggressiveMergingPlugin(),

@@ -1,10 +1,11 @@
 import React, { Component, Fragment } from 'react';
 import GenerateThumbnail from '@volenday/generate-thumbnail';
-import ImageLoader from 'react-imageloader';
 import prettyBytes from 'pretty-bytes';
-import { Popover } from 'antd';
+import { Popover, Spin } from 'antd';
+import Img from 'react-image';
 
 import 'antd/es/popover/style/css';
+import 'antd/es/spin/style/css';
 import './styles.css';
 
 export default class Image extends Component {
@@ -67,16 +68,14 @@ export default class Image extends Component {
 	Loader(props) {
 		let value = GenerateThumbnail(props.src.url);
 		return (
-			<ImageLoader
-				src={value.url}
-				wrapper={React.createFactory('div')}
-				imgProps={{ width: props.width, height: props.height, maxwidth: '100%' }}
-				preloader={() => <i class="fa fa-spinner fa-pulse fa-fw" />}>
-				<img
-					src="https://s3-ap-southeast-1.amazonaws.com/images.aha.volenday.com/production/defaults/image.jpg"
-					style={{ width: '30px', height: '30px', maxWidth: '100%' }}
-				/>
-			</ImageLoader>
+			<Img
+				src={[
+					value.url,
+					'https://s3-ap-southeast-1.amazonaws.com/images.aha.volenday.com/production/defaults/image.jpg'
+				]}
+				loader={<Spin />}
+				style={{ width: 'auto', height: '30px', maxwidth: '100%' }}
+			/>
 		);
 	}
 
