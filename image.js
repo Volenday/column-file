@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import GenerateThumbnail from '@volenday/generate-thumbnail';
 import prettyBytes from 'pretty-bytes';
 import { Popover, Spin } from 'antd';
@@ -17,7 +17,7 @@ export default class Image extends Component {
 		const newValue = value.slice(0, 2);
 
 		return (
-			<Fragment>
+			<>
 				{newValue.map((d, i) => {
 					return (
 						<a
@@ -59,7 +59,7 @@ export default class Image extends Component {
 						</a>
 					</Popover>
 				)}
-			</Fragment>
+			</>
 		);
 	}
 
@@ -114,14 +114,14 @@ export default class Image extends Component {
 
 		if (multiple) {
 			return (
-				<Fragment>
+				<>
 					{this.Preview()}
 					{this.renderMultiple()}
-				</Fragment>
+				</>
 			);
 		} else {
 			return (
-				<Fragment>
+				<>
 					{this.Preview()}
 
 					<a
@@ -132,7 +132,7 @@ export default class Image extends Component {
 						}}>
 						{this.Loader({ src: value, height: '30px', width: 'auto' })}
 					</a>
-				</Fragment>
+				</>
 			);
 		}
 	}
