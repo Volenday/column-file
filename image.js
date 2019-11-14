@@ -4,8 +4,6 @@ import prettyBytes from 'pretty-bytes';
 import { Popover, Spin } from 'antd';
 import Img from 'react-image';
 
-import 'antd/es/popover/style/css';
-import 'antd/es/spin/style/css';
 import './styles.css';
 
 export default class Image extends Component {
@@ -66,7 +64,8 @@ export default class Image extends Component {
 	}
 
 	Loader(props) {
-		let value = GenerateThumbnail(props.src.url);
+		const value = GenerateThumbnail(props.src.url);
+
 		return (
 			<Img
 				src={[
