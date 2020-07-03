@@ -64,6 +64,7 @@ export default class Image extends Component {
 	}
 
 	Loader(props) {
+		if (!props.src.url) return null;
 		const value = GenerateThumbnail(props.src.url);
 
 		return (
