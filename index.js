@@ -1,7 +1,7 @@
-import React, { memo } from 'react';
+import React from 'react';
 import Image from './image';
 
-const Index = ({ fixedWidth, multiple, width, ...defaultProps }) => {
+export default ({ fixedWidth, multiple, width, ...defaultProps }) => {
 	return {
 		...defaultProps,
 		disableFilters: true,
@@ -11,5 +11,3 @@ const Index = ({ fixedWidth, multiple, width, ...defaultProps }) => {
 		}
 	};
 };
-
-export default memo(Index);
