@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { memo, useState } from 'react';
 import GenerateThumbnail from '@volenday/generate-thumbnail';
 import prettyBytes from 'pretty-bytes';
 import { Popover, Spin } from 'antd';
@@ -6,14 +6,11 @@ import Img from 'react-image';
 
 import './styles.css';
 
-export default class Image extends Component {
-	state = {
-		selected: null,
-		visible: false
-	};
+const Image = ({ multiple, value = [] }) => {
+	const [selected, setSelected] = useState(null);
+	const [visible, setVisible] = useState(null);
 
-	renderMultiple() {
-		const { value = [] } = this.props;
+	const renderMultiple = () => {
 		const newValue = value.slice(0, 2);
 
 		return (
@@ -24,11 +21,12 @@ export default class Image extends Component {
 							href="#"
 							key={`preview-${d.fileName}-${i}`}
 							onClick={e => {
-								this.setState({ selected: d, visible: true });
+								setSelected(d);
+								setVisible(true);
 								e.preventDefault();
 							}}
 							style={{ marginRight: 3 }}>
-							{this.Loader({ src: d, height: '30px', width: 'auto' })}
+							{Loader({ src: d, height: '30px', width: 'auto' })}
 						</a>
 					);
 				})}
@@ -43,10 +41,11 @@ export default class Image extends Component {
 											key={`all-${d.fileName}${i}`}
 											href="#"
 											onClick={e => {
-												this.setState({ selected: d, visible: true });
+												setSelected(d);
+												setVisible(true);
 												e.preventDefault();
 											}}>
-											{this.Loader({ src: d, height: '30px', width: 'auto' })}
+											{Loader({ src: d, height: '30px', width: 'auto' })}
 										</a>
 									);
 								})}
@@ -61,9 +60,9 @@ export default class Image extends Component {
 				)}
 			</>
 		);
-	}
+	};
 
-	Loader(props) {
+	const Loader = props => {
 		if (!props.src.url) return null;
 		const value = GenerateThumbnail(props.src.url);
 
@@ -77,18 +76,16 @@ export default class Image extends Component {
 				style={{ width: 'auto', height: '30px', maxwidth: '100%' }}
 			/>
 		);
-	}
+	};
 
-	Preview = () => {
-		const { selected, visible } = this.state;
-
+	const Preview = () => {
 		if (!selected || !visible) return null;
 
 		return (
 			<Popover
 				content={
 					<a href={selected.url} target="_blank">
-						{this.Loader({ src: selected, height: 'auto', width: '400px' })}
+						{Loader({ src: selected, height: 'auto', width: '400px' })}
 					</a>
 				}
 				trigger="click"
@@ -105,36 +102,38 @@ export default class Image extends Component {
 					</table>
 				}
 				visible={visible}
-				onVisibleChange={() => this.setState({ selected: null, visible: false })}
+				onVisibleChange={() => {
+					setSelected(null);
+					setVisible(false);
+				}}
 			/>
 		);
 	};
 
-	render() {
-		const { multiple, value = {} } = this.props;
+	if (multiple) {
+		return (
+			<>
+				{Preview()}
+				{renderMultiple()}
+			</>
+		);
+	} else {
+		return (
+			<>
+				{Preview()}
 
-		if (multiple) {
-			return (
-				<>
-					{this.Preview()}
-					{this.renderMultiple()}
-				</>
-			);
-		} else {
-			return (
-				<>
-					{this.Preview()}
-
-					<a
-						href="#"
-						onClick={e => {
-							this.setState({ selected: value, visible: true });
-							e.preventDefault();
-						}}>
-						{this.Loader({ src: value, height: '30px', width: 'auto' })}
-					</a>
-				</>
-			);
-		}
+				<a
+					href="#"
+					onClick={e => {
+						setSelected(value);
+						setVisible(true);
+						e.preventDefault();
+					}}>
+					{Loader({ src: value, height: '30px', width: 'auto' })}
+				</a>
+			</>
+		);
 	}
-}
+};
+
+export default memo(Image);

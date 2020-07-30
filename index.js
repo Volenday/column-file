@@ -1,21 +1,15 @@
-import React from 'react';
+import React, { memo } from 'react';
 import Image from './image';
 
-export default props => {
-	const { fixedWidth, headerStyle = {}, multiple, style = {}, width, ...defaultProps } = props;
-
+const Index = ({ fixedWidth, multiple, width, ...defaultProps }) => {
 	return {
 		...defaultProps,
-		filterable: false,
+		disableFilters: true,
 		width: fixedWidth ? width : 100,
-		style: { ...style, display: 'flex', alignItems: 'center', justifyContent: 'center' },
-		headerStyle: {
-			...headerStyle,
-			display: 'flex',
-			alignItems: 'center'
-		},
 		Cell: ({ column, value }) => {
 			return <Image column={column} multiple={multiple} value={value} />;
 		}
 	};
 };
+
+export default memo(Index);
