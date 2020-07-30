@@ -6,8 +6,8 @@ const Index = ({ fixedWidth, multiple, width, ...defaultProps }) => {
 		...defaultProps,
 		disableFilters: true,
 		width: fixedWidth ? width : 100,
-		Cell: ({ column, value }) => {
-			return <Image column={column} multiple={multiple} value={value} />;
+		Cell: ({ value }) => {
+			return <Image multiple={multiple} value={value} />;
 		}
 	};
 };
