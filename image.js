@@ -2,7 +2,7 @@ import React, { memo, useState } from 'react';
 import GenerateThumbnail from '@volenday/generate-thumbnail';
 import prettyBytes from 'pretty-bytes';
 import { Popover, Spin } from 'antd';
-import Img from 'react-image';
+import { Img } from 'react-image';
 
 import './styles.css';
 
