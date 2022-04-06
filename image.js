@@ -13,6 +13,19 @@ const Image = ({ multiple, value = [] }) => {
 	const renderMultiple = () => {
 		const newValue = value.slice(0, 2);
 
+		if (value.length <= 1) {
+			return (
+				<>
+					{value.map(d => {
+						return (
+							<a href={d.url ?? ''} target="_blank">
+								{Loader({ src: d, height: '30px', width: 'auto' })}
+							</a>
+						);
+					})}
+				</>
+			);
+		}
 		return (
 			<>
 				{newValue.map((d, i) => {
