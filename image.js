@@ -9,7 +9,6 @@ import './styles.css';
 const Image = ({ multiple, value = [] }) => {
 	const [selected, setSelected] = useState(null);
 	const [visible, setVisible] = useState(null);
-
 	const renderMultiple = () => {
 		const newValue = value.slice(0, 2);
 
@@ -109,7 +108,7 @@ const Image = ({ multiple, value = [] }) => {
 								<td>
 									<b>Size</b>
 								</td>
-								<td>{selected.size != '' ? prettyBytes(selected.size) : 0}</td>
+								<td>{selected.size != '' && selected.size ? prettyBytes(selected.size) : 0}</td>
 							</tr>
 						</tbody>
 					</table>
