@@ -7,6 +7,7 @@ export default ({ fixedWidth, multiple, width, ...defaultProps }) => {
 	return {
 		...defaultProps,
 		disableFilters: true,
+		disableSortBy: true,
 		width: fixedWidth ? width : 100,
 		Cell: ({ value }) => {
 			return browser ? <Image multiple={multiple} value={value} /> : null;
