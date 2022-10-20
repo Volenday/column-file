@@ -15,21 +15,34 @@ const Image = ({ multiple, value = [] }) => {
 
 		return (
 			<>
-				{newValue.map((d, i) => {
-					return (
-						<a
-							href="#"
-							key={`preview-${d.fileName}-${i}`}
-							onClick={e => {
-								setSelected(d);
-								setVisible(true);
-								e.preventDefault();
-							}}
-							style={{ marginRight: 3 }}>
-							{Loader({ src: d, height: '30px', width: 'auto' })}
-						</a>
-					);
-				})}
+				{value.length == 1 &&
+					value.map((d, i) => {
+						return (
+							<a
+								href={d.url}
+								key={`preview-${d.fileName}-${i}`}
+								target="_blank"
+								style={{ marginRight: 3 }}>
+								{Loader({ src: d, height: '30px', width: 'auto' })}
+							</a>
+						);
+					})}
+
+				{value.length >= 2 &&
+					newValue.map((d, i) => {
+						return (
+							<a
+								key={`all-${d.fileName}${i}`}
+								href="#"
+								onClick={e => {
+									setSelected(d);
+									setVisible(true);
+									e.preventDefault();
+								}}>
+								{Loader({ src: d, height: '30px', width: 'auto' })}
+							</a>
+						);
+					})}
 
 				{value.length >= 3 && (
 					<Popover
@@ -96,7 +109,9 @@ const Image = ({ multiple, value = [] }) => {
 								<td>
 									<b>Size</b>
 								</td>
-								<td>{selected.size != '' ? prettyBytes(selected.size) : 0}</td>
+								<td>
+									{'size' in selected ? (selected.size != '' ? prettyBytes(selected.size) : 0) : 0}
+								</td>
 							</tr>
 						</tbody>
 					</table>
